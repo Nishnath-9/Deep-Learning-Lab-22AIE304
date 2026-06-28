@@ -1,13 +1,3 @@
-"""
-Lab 1: Perceptron Learning Implementation
-Course: Deep Learning (22AIE304)
-
-Fills in the activity sheet's three blanks:
-  1. linear_output = np.dot(X[i], weights) + bias
-  2. weights += update * X[i]
-  3. bias    += update
-"""
-
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -21,16 +11,13 @@ def train_perceptron(X, y, lr=0.1, epochs=10):
 
     for _ in range(epochs):
         for i in range(len(X)):
-            # 1. Calculate Linear Combination
+           
             linear_output = np.dot(X[i], weights) + bias
 
-            # 2. Apply Activation Function (Heaviside step)
             y_pred = 1 if linear_output >= 0 else 0
 
-            # 3. Compute Update (Error * Learning Rate)
             update = lr * (y[i] - y_pred)
 
-            # 4. Update Weights and Bias
             weights += update * X[i]
             bias += update
 
@@ -48,7 +35,6 @@ def plot_decision_boundary(X, y, weights, bias, gate_name, filename):
         plt.scatter(pts[:, 0], pts[:, 1], marker=marker, color=color,
                     s=150, label=f"Class {label}", edgecolors="black", zorder=3)
 
-    # Decision boundary line: w1*x1 + w2*x2 + b = 0  ->  x2 = -(w1*x1 + b)/w2
     x_vals = np.linspace(-0.5, 1.5, 100)
     if weights[1] != 0:
         y_vals = -(weights[0] * x_vals + bias) / weights[1]
@@ -89,7 +75,6 @@ if __name__ == "__main__":
         plot_decision_boundary(X, y, weights, bias, gate_name,
                                 f"outputs/perceptron_{gate_name.lower()}_boundary.png")
 
-    # ---- XOR demonstration for the Critical Thinking question ----
     print("\n--- XOR Gate (non-linearly separable) ---")
     X_xor = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     y_xor = np.array([0, 1, 1, 0])
