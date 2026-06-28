@@ -1,15 +1,3 @@
-"""
-Lab 2: Multilayer Perceptron (MLP) and Hyperparameter Tuning
-Course: Deep Learning (22AIE304)
-
-Solves XOR (non-linearly separable) with an MLP and runs the four
-experiments required by the activity sheet table:
-  Exp1: Sigmoid, lr=0.01
-  Exp2: Sigmoid, lr=0.1
-  Exp3: ReLU,    lr=0.01
-  Exp4: ReLU,    lr=0.1
-"""
-
 import os
 import numpy as np
 import tensorflow as tf
@@ -23,7 +11,6 @@ os.makedirs("outputs", exist_ok=True)
 tf.random.set_seed(42)
 np.random.seed(42)
 
-# XOR dataset (non-linearly separable -> needs a hidden layer)
 X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]], dtype=np.float32)
 y = np.array([0, 1, 1, 0], dtype=np.float32)
 
@@ -62,13 +49,11 @@ for activation, lr in configs:
     print(f"Activation={activation:8s} | LR={lr:5.2f} | "
           f"Final Loss={final_loss:.4f} | Final Acc={final_acc:.2f}")
 
-# ---- Print table in the same format as the activity sheet ----
 print("\n--- Hyperparameter Experimentation Log (copy into table) ---")
 print(f"{'Exp#':<5}{'Activation':<12}{'LR':<8}{'Final Loss':<14}{'Final Acc.':<10}")
 for idx, (act, lr, loss, acc) in enumerate(results, start=1):
     print(f"{idx:<5}{act:<12}{lr:<8}{loss:<14.4f}{acc:<10.2f}")
 
-# ---- Loss curve plot (screenshot evidence) ----
 plt.figure(figsize=(8, 5))
 for label, loss_curve in histories.items():
     plt.plot(loss_curve, label=label)
