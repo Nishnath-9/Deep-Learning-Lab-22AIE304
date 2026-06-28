@@ -1,12 +1,3 @@
-"""
-Run this once before Lab4_DNN_MNIST.py if mnist.npz is not already present.
-
-On most machines (and Google Colab), tf.keras.datasets.mnist.load_data()
-works directly with no setup. This helper exists only as a fallback for
-restricted/offline environments, converting the classic mnielsen mirror
-into the same .npz format Lab4 expects.
-"""
-
 import gzip
 import pickle
 import os
